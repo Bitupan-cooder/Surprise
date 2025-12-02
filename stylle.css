@@ -1,0 +1,41 @@
+/* 1. Ensure HTML and BODY cover the viewport */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevents scrollbars */
+    background-color: transparent;
+}
+
+/* 2. Make the container fixed to the viewport */
+.video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Puts the video in the background */
+}
+
+/* 3. The magic to make the video cover the entire container */
+.fullscreen-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* These three lines stretch the video to cover the screen */
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover; /* CROPS the video to fill the screen, avoiding black bars */
+    
+    transform: translate(-50%, -50%); /* Centers the video */
+    filter: brightness(0.9); 
+}
+/* Style for the back button */
+.back-button {
+    /* ... (other styles) ... */
+    z-index: 9999; /* <-- SET A VERY HIGH Z-INDEX TO BRING IT TO THE FRONT */
+    position: fixed; /* <-- KEEP THIS! Required for z-index to work */
+    top: 20px;
+    left: 20px;
+    /* ... (other styles) ... */
+}
