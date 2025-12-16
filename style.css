@@ -27,6 +27,65 @@ body {
 .handwritten-style { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.5rem; line-height: 2; }
 
 /* --- 1. Cinematic Intro Screen --- */
+/* --- Timer Overlay Styles --- */
+#countdown-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-dark); /* Matches your cinematic theme */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000; /* Higher than your intro-screen (9999) */
+    color: var(--color-cream);
+    text-align: center;
+}
+
+.timer-wrapper h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    letter-spacing: 3px;
+    color: var(--color-primary);
+}
+
+#timer-display {
+    display: flex;
+    gap: 15px;
+}
+
+.time-unit {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 218, 185, 0.2);
+    min-width: 90px;
+    backdrop-filter: blur(10px);
+}
+
+.time-unit span {
+    font-size: 2.5rem;
+    font-weight: bold;
+    font-family: 'Playfair Display', serif;
+    display: block;
+    color: var(--color-cream);
+}
+
+.time-unit p {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 5px;
+    color: var(--color-secondary);
+}
+
+/* For mobile screens */
+@media (max-width: 480px) {
+    #timer-display { gap: 8px; }
+    .time-unit { min-width: 70px; padding: 10px; }
+    .time-unit span { font-size: 1.5rem; }
+}
 .intro-screen {
     position: fixed;
     top: 0;

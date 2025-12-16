@@ -1,6 +1,40 @@
 
    document.addEventListener('DOMContentLoaded', () => {
     // ... [Keep all existing variables] ...
+    // --- 0. TIMER LOGIC (NEW) ---
+    // Set the target date: Year, Month (0-11), Day, Hour, Minute
+    const birthdayDate = new Date("December 18, 2025 00:00:00").getTime();
+    const overlay = document.getElementById("countdown-overlay");
+
+    const timerInterval = setInterval(function() {
+        const now = new Date().getTime();
+        const timeLeft = birthdayDate - now;
+
+        // Calculations
+        const d = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const h = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+        // Update display
+        if (document.getElementById("days")) {
+            document.getElementById("days").innerText = d.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = h.toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = m.toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = s.toString().padStart(2, '0');
+        }
+
+        // When countdown finishes
+        if (timeLeft < 0) {
+            clearInterval(timerInterval);
+            overlay.style.transition = "opacity 1s ease";
+            overlay.style.opacity = "0";
+            setTimeout(() => {
+                overlay.style.display = "none";
+                startIntroSequence(); // Trigger the rest of your site
+            }, 1000);
+        }
+    }, 1000);
     // Add this utility function inside your DOMContentLoaded block
 function createConfettiEffect(rect) {
     // Simple confetti implementation
